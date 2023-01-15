@@ -70,12 +70,14 @@ class MovieInfoTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupLayout()
-        setupReadMore()
-    }
+        setupLayout()    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        setupReadMore()
     }
 
     public func configure(with model: ReviewViewModel) {
@@ -107,10 +109,10 @@ extension MovieInfoTableViewCell {
     private func setupReadMore() {
         guard contentLabel.text != nil else {return}
         let readmoreFont = UIFont(name: "Helvetica-Oblique", size: 11.0)
-         let readmoreFontColor = UIColor.blue
-         DispatchQueue.main.async {
-             self.contentLabel.addTrailing(with: "... ", moreText: "Read More", moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
-         }
+        let readmoreFontColor = UIColor.blue
+        DispatchQueue.main.async {
+            self.contentLabel.addTrailing(with: "... ", moreText: "Read More", moreTextFont: readmoreFont!, moreTextColor: readmoreFontColor)
+        }
     }
 
     private func setupLayout() {
